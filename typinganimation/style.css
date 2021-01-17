@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    background: rgb(17, 17, 17);
+}
+
+#type {
+    position: absolute;
+    top: 30px;
+    right: 25%;
+    width: 50%;
+}
+
+
+/* styling of the input tag */
+
+#type input {
+    width: 100%;
+    padding: 8px 20px;
+    font-size: 30px;
+    border: 1px solid white;
+    box-shadow: 0px 0px 10px 2px skyblue, 2px 2px 10px 4px blue;
+    outline: none;
+    border-radius: 50px;
+    animation: shadow 2s linear infinite;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(28, 63, 250);
+    font-size: bolder;
+}
+
+#type input:focus {
+    outline: none;
+}
+
+#type button {
+    margin-top: 10px;
+    font-size: 30px;
+    margin-left: 10px;
+    outline: none;
+    padding: 8px 20px;
+    color: white;
+    background: rgb(28, 63, 250);
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 50px;
+    box-shadow: inset 0px 0px 4px 2px navy;
+    transition-duration: 1s;
+}
+
+#type button:hover {
+    cursor: pointer;
+    color: rgb(28, 63, 250);
+    background: white;
+}
+
+@keyframes shadow {
+    0%,
+    100% {
+        box-shadow: 0px 0px 10px 2px skyblue, 2px 2px 10px 4px blue;
+    }
+    50% {
+        box-shadow: 0px 0px 10px 2px hotpink, -2px -2px 10px 4px red;
+    }
+}
+
+
+/* style for the animated text  */
+
+#animated {
+    width: 90vw;
+    height: 30vh;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 25px;
+    font-size: 60px;
+    color: white;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#animated #cursor {
+    animation: flicker 850ms linear infinite;
+}
+
+@keyframes flicker {
+    0%,
+    100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 1;
+    }
+}
