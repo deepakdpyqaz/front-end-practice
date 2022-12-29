@@ -1,14 +1,37 @@
 let inputtext = document.querySelector('#type input');
 let animated = document.querySelector('#animated #text');
 let animatebtn = document.querySelector('#type button');
-let isAnimated = true;
-animatebtn.addEventListener('click', function() {
-    isAnimated = false;
-    setTimeout(() => {
-        flicker(animated, inputtext.value);
-        isAnimated = true;
-    }, 1000);
+let predefined = null;
+const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
 });
+
+if(params.text){
+    inputtext.value = params.text;
+    repeateFlicker(animated, params.text);
+}
+
+animatebtn.addEventListener('click', function() {
+    if(predefined){
+        clearTimeout(predefined);
+    }
+    predefined = setTimeout(() => {
+        repeateFlicker(animated, inputtext.value);
+
+    }, 1000);
+
+});
+
+function repeateFlicker(node,item){
+    if(predefined){
+        clearTimeout(predefined);
+    }
+    let time = item.length* 300 * 2 + 100
+    predefined = setTimeout(() => {
+        flicker(node, item);
+        repeateFlicker(node,item);
+    },time);
+}
 
 
 
@@ -44,10 +67,10 @@ function animateflicker(node, list, index = 0) {
     if (index == list.length) {
         index = 0;
     }
-    setTimeout(() => {
-        if (isAnimated) {
-            animateflicker(node, list, index);
-        }
+    predefined = setTimeout(() => {
+        animateflicker(node, list, index);
     }, time);
 }
-animateflicker(animated, ['Hii, This is Deepak Prakash....', 'I am a front-end developer....', 'Welcome here....']);
+if(!params.text){
+    animateflicker(animated, ['Hii, This is Deepak Prakash....', 'I am a front-end developer....', 'Welcome here....']);
+}
